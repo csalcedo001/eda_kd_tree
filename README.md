@@ -1,19 +1,13 @@
-# Quad tree
+# KD-Tree
 
-Quad tree implementation
+KD-Tree implementation
 
 ## Tests
 
-Run `make` to compile the executables and run
+Run `make` to compile executables and run
 
 ```
-./quad_tree < data/quad_tree.in
+./bin/2d_tree < data/2d_tree.in
 ```
 
-to test the plain quad tree structure or
-
-```
-./bw_quad_tree <data/bw_quad_tree_2.in
-```
-
-for the black and white quad tree version.
+to test main functionalities.
