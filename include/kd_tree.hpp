@@ -8,7 +8,7 @@ namespace eda {
 
 namespace kd_tree {
 
-template <typename T, int m>
+template <typename T, std::size_t m>
 class KDTree : public BaseKDTree<T, m, Node<T, m> > { };
 
 } // namespace kd_tree

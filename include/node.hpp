@@ -7,7 +7,7 @@ namespace eda {
 
 namespace kd_tree {
 
-template <typename T, int m>
+template <typename T, std::size_t m>
 class Node : public BaseNode<T, m, Node<T, m> > {
 public:
 	Node(std::array<int, m> &, T &);

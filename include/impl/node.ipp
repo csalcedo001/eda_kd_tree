@@ -9,7 +9,7 @@ namespace eda {
 
 namespace kd_tree {
 
-template <typename T, int m>
+template <typename T, std::size_t m>
 Node<T, m>::Node(std::array<int, m> &point, T &data) :
 	BaseNode<T, m, Node<T, m> >(point, data)
 { }

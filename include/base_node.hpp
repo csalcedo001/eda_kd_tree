@@ -2,19 +2,21 @@
 #define KD_TREE_BASE_NODE_HPP_
 
 #include <array>
+#include <vector>
 
 namespace eda {
 
 namespace kd_tree {
 
-template <typename T, int m, class Node>
+template <typename T, std::size_t m, class Node>
 class BaseNode {
 public:
 	std::array<int, m> point_;
-	T data_;
+	std::vector<T> data_;
 	Node *children_[2];
 
-	BaseNode(std::array<int, m> &, T &);
+	BaseNode(std::array<int, m> &);
+	BaseNode(std::array<int, m> &, T);
 };
 
 } // namespace kd_tree
