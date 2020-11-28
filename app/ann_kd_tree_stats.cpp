@@ -32,8 +32,6 @@ int main() {
 
 	ANNkd_tree tree(point_array, n, dimensions);
 
-	// tree.Print(ANNfalse, cout);
-
 	int m;
 
 	cin >> m;
@@ -44,7 +42,9 @@ int main() {
 
 	string label;
 
-	while (m--) {
+	int correct = 0;
+
+	for (int i = 0; i < m; i++) {
 		for (int i = 0; i < dimensions; i++) {
 			cin >> query[i];
 		}
@@ -53,8 +53,10 @@ int main() {
 
 		tree.annkSearch(query, 1, nn_idx, dists);
 
-		cout << label << ' ' << labels[nn_idx[0]] << endl;
+		if (labels[nn_idx[0]] == label) correct++;
 	}
+
+	cout << "Accuracy: " << 100. * correct / (double) m << '%' << endl;
 
 	annDeallocPts(point_array);
 	annDeallocPt(query);
