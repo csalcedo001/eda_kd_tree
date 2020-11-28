@@ -7,7 +7,11 @@ KD-Tree implementation
 Run `make` to compile executables and run
 
 ```
-./bin/2d_tree < data/2d_tree.in
+./bin/2d_tree < data/2d_tree/2d_tree.in
 ```
 
 to test main functionalities.
+
+## Datasets
+
+Download CKPlus dataset and butterflies dataset.

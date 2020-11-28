@@ -1,6 +1,9 @@
 # Project ignores
 bin/*
 build/*
+*.DS_Store
+data/ckplus/*
+data/leedsbutterfly/*
 
 # Prerequisites
 *.d
