@@ -30,7 +30,7 @@ data/leedsbutterfly/*
 # Compiled Static libraries
 *.lai
 *.la
-*.a
+# *.a
 *.lib
 
 # Executables
