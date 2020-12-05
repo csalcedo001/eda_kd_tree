@@ -8,31 +8,28 @@
 using namespace cimg_library;
 using namespace std;
 
-vector<int> vectorize(CImg<double> & img) {
-	vector<int> v(256*3, 0);
-    for(int i=0;i< img.width();i++) {
-        for(int j=0;j< img.height();j++) {
-            int r = img(i,j,0);
-            int g = img(i,j,1);
-            int b = img(i,j,2);
-            
-			v[r*3]++;
-			v[g*3+1]++;
-			v[b*3+2]++;
-        }
+vector<double> vectorize(CImg<double> & img) {
+	CImg<double> haar = img.haar(false, 3);
+	CImg<double> crop = haar.crop(0,0,27,27);
+
+	vector<double> result;
+	cimg_forXY(crop, x, y) {
+		result.push_back((crop(x,y,0)+crop(x,y,1)+crop(x,y,2))/3);
 	}
-	return v;
+
+	return result;
 }
 
-vector<vector<int>> get_vectors(string directory_name, vector<string> &classes) {
-	vector<vector<int>> points;
+vector<vector<double>> get_vectors(string directory_name, vector<string> &classes) {
+	vector<vector<double>> points;
 	for (const auto& entry : experimental::filesystem::directory_iterator(directory_name)) {
 		string entry_s = entry.path().filename().string();
 		string entry_path = directory_name;
 		entry_path.append("/");
 		entry_path.append(entry_s);
 		CImg<double> A(entry_path.c_str());
-		vector<int> vA = vectorize(A);
+		A.resize(304,208);
+		vector<double> vA = vectorize(A);
 		points.push_back(vA); 
 		classes.push_back(entry_s.substr(0,3));
 	}
@@ -46,13 +43,13 @@ int main() {
 	int training_set_size = (double) vectors.size() * 0.7;
 	cout << training_set_size << " " << vectors[0].size() << "\n";
 	for (int i = 0; i < training_set_size; ++i) {
-		for (int & i : vectors[i]) cout << i << " ";
+		for (auto & i : vectors[i]) cout << i << " ";
 		cout << classes[i] << "\n";
 	}
 	int test_set_size = vectors.size() - training_set_size;
 	cout << test_set_size << "\n";
 	for (int i = training_set_size; i < vectors.size(); ++i) {
-        for (int & i : vectors[i]) cout << i << " ";
+        for (auto & i : vectors[i]) cout << i << " ";
         cout << classes[i] << "\n";
     }
 
