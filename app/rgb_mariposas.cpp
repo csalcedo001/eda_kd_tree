@@ -9,16 +9,23 @@ using namespace cimg_library;
 using namespace std;
 
 vector<double> vectorize(CImg<double> & img) {
-	CImg<double> haar = img.haar(false, 3);
-	CImg<double> crop = haar.crop(0,0,27,27);
+    CImg<double> a, b, c, d;
+    a = b = c = d = img.haar(false, 2);
 
-	vector<double> result;
-	cimg_forXY(crop, x, y) {
-		result.push_back((crop(x,y,0)+crop(x,y,1)+crop(x,y,2))/3);
-	}
+    a = a.crop(0,0,75,51);
+    b = b.crop(76,0,151,51);
+    c = c.crop(0,52,75,103);
+    d = d.crop(76,52,151,103);
 
-	return result;
+    vector<double> result;
+    cimg_forXY(a, x, y) { result.push_back((a(x,y,0)+a(x,y,1)+a(x,y,2))/3); }
+    cimg_forXY(b, x, y) { result.push_back((b(x,y,0)+b(x,y,1)+b(x,y,2))/3); }
+    cimg_forXY(c, x, y) { result.push_back((c(x,y,0)+c(x,y,1)+c(x,y,2))/3); }
+    cimg_forXY(d, x, y) { result.push_back((d(x,y,0)+d(x,y,1)+d(x,y,2))/3); }
+
+    return result;
 }
+
 
 vector<vector<double>> get_vectors(string directory_name, vector<string> &classes) {
 	vector<vector<double>> points;
