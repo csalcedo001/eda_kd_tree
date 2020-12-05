@@ -1,6 +1,6 @@
 #include <iostream>
 #include <vector>
-#include <experimental/filesystem>
+#include <filesystem>
 
 #include "CImg.h"
 #define N_PICS 832
@@ -22,7 +22,7 @@ vector<double> vectorize(CImg<double> & img) {
 
 vector<vector<double>> get_vectors(string directory_name, vector<string> &classes) {
 	vector<vector<double>> points;
-	for (const auto& entry : experimental::filesystem::directory_iterator(directory_name)) {
+	for (const auto& entry : filesystem::directory_iterator(directory_name)) {
 		string entry_s = entry.path().filename().string();
 		string entry_path = directory_name;
 		entry_path.append("/");
