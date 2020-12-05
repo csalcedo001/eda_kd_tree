@@ -1,5 +1,5 @@
 CXX = g++
-CXXFLAGS = -std=c++17 -L/opt/X11/lib -Llib/ann_1.1.2/lib -I /opt/X11/include -I include -I lib/ann_1.1.2/include -o $@ -lANN
+CXXFLAGS = -std=c++17 -L/opt/X11/lib -Llib/ann_1.1.2/lib -I /opt/X11/include -I include -I lib/ann_1.1.2/include -o $@ -lANN -lpthread -lstdc++
 TARGET = bin/main
 DIRS = bin build
 
