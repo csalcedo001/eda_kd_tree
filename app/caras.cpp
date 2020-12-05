@@ -3,14 +3,14 @@
 #include <experimental/filesystem>
 
 #include "CImg.h"
-#define N_PICS 832
 
 using namespace cimg_library;
 using namespace std;
 
 vector<double> vectorize(CImg<double> & img) {
-	CImg<double> a = img.haar(false, 1);
-  
+	CImg<double> a = img.haar(false, 2);
+  	a = a.crop(0, 0, 23, 23);
+	
 	vector<double> result;
 	cimg_forXY(a, x, y) { 
 		result.push_back(a(x,y,0));
